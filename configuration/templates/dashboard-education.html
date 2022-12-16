@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>portfolio</title>
+    {% load static %}
+
+    
+    <link rel="stylesheet" href="{% static 'css/all.css' %}  ">
+   
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/style1.css' %}">
+
+</head>
+<body>
+  <!-- navbar -->
+  {% include 'navbar1.html' %}
+<!-- end NavBar -->
+      <div class="container">
+        <h1 class="mt-5  text-center">Education And Diplomas</h1>
+        <a class="btn btn-success add-btn" href="#addForm" id="add">Add new</a>
+        <table class="table">
+            <thead>
+                <tr class="table-dark">
+                    <th>label</th>
+                    <th>date begin</th>
+                    <th>date end</th>
+                    <th>location</th>
+                    <th>type</th>
+                    <th>certificate</th>
+                    <th class="text-center">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for t in types %}
+                {% for e in educ %}
+                {% if t.id == e.type_id   %}
+                <tr class="table-secondary">
+                    <td>{{e.libelle}}</td>
+                    <td>{{e.beginDate}}</td>
+                    <td>{{e.endDate}}</td>
+                    <td>{{e.location}}</td>
+                    <td>{{t.libelle}}</td>
+                    <td><a href="/{{e.certificate}}" target="_blank"><img src="/{{e.certificate}}" style="height: 30px;width: 50px;" alt=""></a></td>
+                    <td class="text-center"><a href="update_educ/{{ e.id }}" class="btn btn-warning" title="Modify"><i class="fas fa-tools"></i></a>
+                        <a  type="button" class="btn btn-danger" title="Delete" data-bs-toggle="modal" data-bs-target="#exampleModal{{e.id}}" ><i class="fas fa-trash-alt"></i></a>
+                       
+                    </td>
+                </tr>
+                {% endif %}
+                {% endfor %}  
+                {% endfor %}
+            </tbody>
+            
+        </table>
+
+
+<form action="addEduc/" method="post" class="form" id="addForm"
+enctype="multipart/form-data">
+    {% csrf_token %}
+    <button class="btn btn-danger" id="cancel"><i class="fas fa-times"></i></button>
+    <h1 class="text-center">Add education or Training</h1>
+   
+    
+    <div class="mb-3 mt-3">
+        <label for="label" class="form-label">Label:</label>
+        <input type="text" class="form-control" id="label" placeholder="Enter label" name="label" required>
+    </div>
+    <div class="mb-3">
+        <label for="dateBegin" class="form-label">Date begin:</label>
+        <input type="number" min="1900"  class="form-control" id="dateBegin" placeholder="Enter Date begin" name="dateBegin" required>
+    </div>
+    <div class="mb-3">
+        <label for="dateEnd" class="form-label">Date end:</label>
+        <input type="number" min="1900"  class="form-control" id="dateEnd" placeholder="Enter Date end" name="dateEnd" required>
+    </div>
+    <div class="mb-3">
+        <label for="location" class="form-label">location:</label>
+        <input type="text"   class="form-control" id="location" placeholder="Enter Date end" name="location" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="Type" class="form-label">Type:</label>
+        <select class="form-select" aria-label="Default select example" name="type">
+            <option selected>select Type</option>
+            {% for t in types %}
+            <option value="{{t.id}}">{{t.libelle}}</option>
+            {% endfor %}
+           
+            
+          </select>
+            </div>
+
+
+    <div class="mb-3">
+        <label for="Certificate" class="form-label">Certificate:</label>
+        <input type="file"  id="Certificate" placeholder="Entrer Certificate" name="Certificate" >
+    </div>
+
+   
+
+
+
+    <button type="submit" class="btn btn-success">Add</button>
+    <button type="reset" class="btn btn-danger">Reset</button>
+</form>
+
+
+
+      </div>
+
+<!-- Modal -->
+{% for t in types %}
+{% for e in educ %}
+{% if t.id == e.type_id   %}
+<div class="modal fade" id="exampleModal{{e.id}}" tabindex="-1" aria-labelledby="exampleModalLabel{{e.id}}" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            are you sure to delete?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+    
+<a href="del_educ/{{ e.id }}" type="button" class="btn btn-primary">Delete</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+  {% endfor %}  
+  {% endfor %}
+  <!-- end Modal -->
+
+    
+      <script src="{% static 'js/jquery.js' %}"></script>
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/icon.js' %}"></script>
+<script src="{% static 'js/bootstrap.bundle.js' %}"></script>
+      <script>
+        $(document).ready(function(){
+            $('#add').click(function(){
+        $('#addForm').show();
+
+        })
+
+        $('#cancel').click(function(){
+        $('#addForm').hide();
+
+        })
+
+    })
+
+
+      </script>
+</body>
+
+</html>

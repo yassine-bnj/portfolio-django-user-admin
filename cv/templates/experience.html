@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>portfolio</title>
+    <link rel="stylesheet" href="{% static 'css/all.css' %}  ">
+   
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
+    
+    <script src="{% static 'js/bootstrap.bundle.js' %}"></script>
+    <script src="{% static 'js/icon.js' %}"></script>
+</head>
+<body>
+    <!-- custom cursors  -->
+<div class="cursor-1"></div>
+<div class="cursor-2"></div>
+    <!-- menu-bars -->
+<div id="menu-bars" class="fas fa-bars"></div>
+
+<!-- header section starts -->
+{% include "navBar.html" %}
+<!-- header section end -->
+
+<!-- -------------------EXPERIENCE section starts---------- -->
+<section class="experience" id="experience" >
+    <h1><span>My </span>experience</h1>
+   
+    <div class="experience_contaent">
+        {% for e in experience %}
+        <div class="box">
+            <div class="content">
+                <span>{{e.beginDate}}-{{e.endDate}}</span>
+                <h3>{{e.libelle}}</h3>
+                <p>{{e.location}}</p>
+                <h3>(role){{e.post}}</h3>
+                <p><b>Tasks</b></p>
+                <p>{{e.tasks|linebreaks}}</p>
+              
+                <div class="see-certificate"><a href="#"><img src="{% static 'all-img/link.png' %}"  alt="" title="see demo"></a></div>
+
+            </div>
+        </div>
+      {% endfor %}
+     
+    </div>
+
+  
+</section>
+<!-- -------------------EXPERIENCE section end---------- -->
+
+{% include 'footer.html' %}
+
+
+<script src="{% static 'js/jquery.js' %}"></script>
+<!-- <script src="{% static 'js/typed.js' %}"></script> -->
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+<script>
+    $(document).ready(function(){
+        $('#btn').show(4000);
+       
+        $('#menu-bars').click(function(){
+            $('header').toggleClass('active');
+        })
+    })
+</script>
+</body>
+
+</html>

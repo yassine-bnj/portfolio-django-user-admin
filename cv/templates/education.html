@@ -1,0 +1,95 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>portfolio</title>
+    <link rel="stylesheet" href="{% static 'css/all.css' %}  ">
+   
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
+    
+    <script src="{% static 'js/bootstrap.bundle.js' %}"></script>
+    <script src="{% static 'js/icon.js' %}"></script>
+</head>
+<body>
+    <!-- custom cursors  -->
+<div class="cursor-1"></div>
+<div class="cursor-2"></div>
+    <!-- menu-bars -->
+<div id="menu-bars" class="fas fa-bars"></div>
+
+<!-- header section starts -->
+{% include "navBar.html" %}
+<!-- header section end -->
+
+<!-- -------------------EXPERIENCE section starts---------- -->
+<section class="experience" id="experience" >
+    <h1>education <span>and </span>diplomas</h1>
+    {% for t in types %}
+   
+    <h3 class="col-12">{{t.libelle}}</h3>
+    <div class="experience_contaent col-12">
+        
+        {% for e in education %}
+        {% if e.type_id == t.id  %}
+        <div class="box">
+            <div class="content">
+                <span>{{e.beginDate}}-{{e.endDate}}</span>
+                <p>{{e.location}}</p>
+                <h3>{{e.libelle}}</h3>
+                <div class="see-certificate"><a href="/{{e.certificate}}" target="_blank"><img src="{% static 'all-img/see-certificate.png' %}"  alt="" title="see Certificate"></a></div>
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+        <br>
+        {% endfor %}  
+     
+    </div>
+
+
+    <!-- <h3>Training</h3>
+    <div class="experience_contaent">
+        {% for e in education %}
+        {% if e.type == 'training' %}
+        <div class="box">
+            <div class="content">
+                <span>{{e.beginDate}}-{{e.endDate}}</span>
+                <p>{{e.location}}</p>
+                <h3>{{e.libelle}}</h3>
+                <div class="see-certificate"><a href="#"><img src="images/all-img/see-certificate.png"  alt="" title="see Certificate"></a></div>
+
+            </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+      
+     </div>  -->
+</section>
+<!-- -------------------EXPERIENCE section end---------- -->
+
+{% include 'footer.html' %}
+
+
+<script src="{% static 'js/jquery.js' %}"></script>
+<!-- <script src="{% static 'js/typed.js' %}"></script> -->
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+<script>
+    $(document).ready(function(){
+        $('#btn').show(4000);
+       
+        $('#menu-bars').click(function(){
+            $('header').toggleClass('active');
+        })
+    })
+</script>
+</body>
+
+</html>

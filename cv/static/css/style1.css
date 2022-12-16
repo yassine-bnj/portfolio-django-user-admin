@@ -1,0 +1,65 @@
+*{
+    padding: 0;
+    margin: 0;
+   
+}
+body{
+    background-color: #fcf2e8;
+}
+.logo{
+    text-transform: uppercase;
+    color:var(--white-color);
+    font-size: 25px;
+    font-weight: bolder;
+    text-decoration: none;
+}
+.logo span{
+    color: #e38528;
+}
+.deconnexion{
+    color: white;
+    margin-bottom: 0px;
+}
+
+
+.deconnexion a{
+    text-decoration: none;
+    color: white;
+}
+@media (max-width:991px) {
+    .navbar-nav{
+        text-align: center;
+    }
+    .navbar-nav li:hover{
+        background: burlywood;
+    }
+    .deconnexion{
+       text-align: center;
+    }
+    .deconnexion:hover{
+        background: burlywood;
+    }
+}
+
+
+.form{
+    border: 1px solid black;
+    padding: 20px 10px;
+    margin: 10px 0;
+    
+}
+#addForm{
+    display: none;
+}
+#cancel{
+    float: right;
+    margin-top: -10px;
+}
+
+.add-btn{
+    float: right;
+    margin: 10px 0;
+}
+
+
+/*//login*/

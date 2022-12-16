@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>portfolio</title>
+    
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'css/all.css' %}  ">
+   
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+
+    <link rel="stylesheet" href="{% static 'css/style1.css' %}">
+    
+
+</head>
+<body>
+   <!-- navbar -->
+   {% include 'navbar1.html' %}
+   <!-- end NavBar -->
+
+      <div class="container">
+      
+
+<form action="update_type_action/{{ type.id }}" method="post" class="form" >
+  {% csrf_token %}
+    <h1 class="text-center">Update type of education</h1>
+   
+    
+    <div class="mb-3 mt-3">
+        <label for="label" class="form-label">Label:</label>
+        <input value="{{ type.libelle }}" type="text" class="form-control" id="label" placeholder="Enter label" name="label" required>
+    </div>
+  
+
+
+
+    <button type="submit" class="btn btn-success">Update</button>
+    <button type="reset" class="btn btn-danger">Reset</button>
+</form>
+
+
+
+      </div>
+
+
+
+    
+      <script src="{% static 'js/jquery.js' %}"></script>
+      <script src="{% static 'js/jquery.min.js' %}"></script>
+      <script src="{% static 'js/icon.js' %}"></script>
+      <script src="{% static 'js/bootstrap.bundle.js' %}"></script>
+</body>
+
+</html>

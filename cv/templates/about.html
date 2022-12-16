@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>portfolio</title>
+    <link rel="stylesheet" href="{% static 'css/all.css' %}  ">
+   
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.min.css' %}">
+    
+    <script src="{% static 'js/bootstrap.bundle.js' %}"></script>
+    <script src="{% static 'js/icon.js' %}"></script>
+</head>
+<body>
+    <!-- custom cursors  -->
+<div class="cursor-1"></div>
+<div class="cursor-2"></div>
+    <!-- menu-bars -->
+<div id="menu-bars" class="fas fa-bars"></div>
+
+<!-- header section starts -->
+{% include "navBar.html" %}
+<!-- header section end -->
+
+<!-- home section starts -->
+<section class="home home pt-5 pt-md-0" id="home">
+    <div class="contain home pt-5 pt-md-0">
+        <p class="fs-3 w-100">hi there...</p>
+        <h1 class="name fw-bolder w-100">i am <span class="typing-name">{{firstName}} {{lastName}}</span></h1>
+        <h3 class="h1 w-100">i am <span class="typing-text">{{post}}</span> </h3>
+        <p class="text fs-3 w-100"><span class="typing-paragraph">{{description1}}</span> </p>
+        <a href="#about" class="btn " id="btn">about me</a>
+    </div>
+    <div class="image">
+        <img src="{% static 'images/'|add:image1' %}" alt="">
+    </div>
+    
+</section>
+<!-- home section end -->
+<!-- about section starts -->
+<section class="about" id="about">
+    <h1 class="about_head fw-bolder">about <span>me</span></h1>
+    <div class="container">
+        <div class="about_img">
+            <img src="{% static 'images/'|add:image2' %}" alt="">
+        </div>
+        <div class="about_content pt-xl-5">
+            <h1>my name is {{firstName}} {{lastName}} & I Am A {{post}}</h1>
+            <p>{{description2}}</p>
+            <div class="details">
+                <div class="box">
+                    <p> <span> age : </span> {{age}} </p>
+                    <p> <span> gender : </span> {{gender}} </p>
+                    <!-- <p> <span> language : </span> arabic, english </p> -->
+                    <p class="fs-4"> <span> email : </span> {{email}} </p>
+                    <p> <span> work : </span> {{post}} </p>
+                </div>
+                <div class="box">
+                    <p> <span> freelance : </span> {% if freelance == True %}
+                    available
+                    {% else %}
+                    not available
+                    {% endif %}
+                    </p>
+                    <p> <span> phone : </span> {{phoneNumber}} </p>
+                    
+                    <p> <span> country : </span> {{country}} </p>
+                </div>
+            </div>
+            <a href="{% static 'files/'|add:resume' %}" download rel="noopener noreferrer" target="_blank" class="btn">download CV</a>
+            <a href="{{linkedIn}}" target="_blank" class="btn">hire me</a>
+        </div>
+    </div>
+    <!-- --------------skills---------- -->
+   
+    
+</section>
+
+{% include 'footer.html' %}
+
+
+<script src="{% static 'js/jquery.js' %}"></script>
+<!-- <script src="{% static 'js/typed.js' %}"></script> -->
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+<script>
+    $(document).ready(function(){
+        $('#btn').show(4000);
+       
+        $('#menu-bars').click(function(){
+            $('header').toggleClass('active');
+        })
+    })
+</script>
+</body>
+
+</html>
